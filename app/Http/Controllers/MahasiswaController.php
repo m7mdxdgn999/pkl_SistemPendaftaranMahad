@@ -36,8 +36,21 @@ class MahasiswaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+    
     {
-        //
+        //validasi
+        $request->validate([
+            'nama_mahasiswa' => 'required',
+            'nim' => 'required | size:14',
+            'fakultas_jurusan_semester' => 'required ',
+            'tempat_tanggal_lahir' => 'required ',
+            'no_hp_mahasantri' => 'required ',
+            'jalur_masuk' => 'required ',
+            'nama_org_tua' => 'required ',
+            'no_hp_org_tua' => 'required ',
+            'alamat_lengkap' => 'required ',
+            'nama_mabna' => 'required '
+        ]);        
        // 
        //insert ke table mahasantri
        DB::table('mahasantri')->insert([
