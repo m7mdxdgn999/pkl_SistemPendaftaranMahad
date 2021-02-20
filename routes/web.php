@@ -26,4 +26,6 @@ Route::get('/pendaftaran', function () {
 });
 
 Route::get('/admin', 'MahasiswaController@index' );
+Route::get('/detail', 'MahasiswaController@show' );
+Route::post('/admin', 'MahasiswaController@store' );
 

@@ -18,7 +18,8 @@
     <!-- thumbnail -->
     <div class="  col-md-12">
       <div class="item-big-report col-md-12">
-        <form action="" method="post">
+        <form action="/admin" method="post">
+        @csrf
           <div class="row">
             <!--form kiri-->
             <div class="col-md-6 ">

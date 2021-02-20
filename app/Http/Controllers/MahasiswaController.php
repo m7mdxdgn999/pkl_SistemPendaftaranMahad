@@ -38,6 +38,25 @@ class MahasiswaController extends Controller
     public function store(Request $request)
     {
         //
+       // 
+       //insert ke table mahasantri
+       DB::table('mahasantri')->insert([
+        'nama_mahasiswa'=>$request-> nama_mahasiswa,
+        'nim'=>$request-> nim,
+        'fakultas_jurusan_semester'=>$request-> fakultas_jurusan_semester,
+       'tempat_tanggal_lahir'=>$request-> tempat_tanggal_lahir,
+       'no_hp_mahasantri'=>$request-> no_hp_mahasantri,
+        'jalur_masuk'=>$request-> jalur_masuk,
+        'nama_org_tua'=>$request-> nama_org_tua,
+        'no_hp_org_tua'=>$request-> no_hp_org_tua,
+        'alamat_lengkap'=>$request-> alamat_lengkap,
+        'nama_mabna'=>$request-> nama_mabna
+       ]);
+
+      //\App\mahasantri::create ($request->all());
+
+       //alihkan halaman ke halaman admin
+        return redirect('/admin')->with('status', ' Data Berhasil Ditambahkan!');
     }
 
     /**
@@ -46,9 +65,10 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( )
     {
         //
+        
     }
 
     /**
