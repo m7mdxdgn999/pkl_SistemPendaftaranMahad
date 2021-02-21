@@ -11,7 +11,7 @@
 
   <title>@yield('title')</title>
   <!-- css -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <!-- boostrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
@@ -44,10 +44,10 @@
 
     <div class="menu">
       <div class="item">
-        <a class="sub-btn" href="{{url('/pendaftaran')}}"><i class="fas fa-desktop"></i>Pendaftaran<i class="fas fa-angle-right dropdown"></i></a>
+        <a class="sub-btn" href="#"><i class="fas fa-desktop"></i>Pendaftaran<i class="fas fa-angle-right dropdown"></i></a>
         <div class="sub-menu">
-          <a href="#" class="sub-item">Mabna Syekh Nawawi</a>
-          <a href="#" class="sub-item">Mabna Syekh Abdul Karim</a>
+          <a href="{{url('/pendaftaran')}}" class="sub-item">Daftar mahasiswa</a>
+          <a href="#" class="sub-item">List of mahasiswa</a>
           <a href="#" class="sub-item">Mabna Syekh Hasanuddin</a>
           <a href="#" class="sub-item">Mabna Syarifah Mudaim</a>
           <a href="#" class="sub-item">Mabna Syarifah Khodijah</a>

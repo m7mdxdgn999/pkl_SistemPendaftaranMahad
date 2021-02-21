@@ -3,6 +3,7 @@
 @section ('title','Admin Panel')
 
 @section ('container main')
+
 <!-- main content start -->
 <section class="container main ">
   <!-- header start -->
@@ -32,11 +33,14 @@
           </div>
         </form>
 
-        @if (session('status'))
-        <div class="alert alert-success">
-          {{ session('status') }}
-        </div>
-        @endif
+        {{-- <div class="row">
+          @if (session('status'))
+          <div class=" alert alert-success " >
+            {{ session('status') }}
+          </div>
+          @endif
+        </div> --}}
+       
 
 
         <table class="table table-borderless table-tiketsaya">
@@ -57,13 +61,13 @@
             <tr>
               <td scope="row user-table-item"> {{$loop->iteration}} </td>
               <td>
-                <a href=" "> ubah | </a>
-                <a href=" " onclick="return confirm('yakin?');"> hapus </a>
+                <a href="{{ url('edit', $mhs->id) }} "> ubah | </a>
+                <a href=" "  onclick="return confirm('yakin?');"> hapus </a>
               </td>
               <td>{{$mhs->nama_mahasiswa}}</td>
               <td>{{$mhs->nim}}</td>
               <td>{{$mhs->nama_mabna}}</td>
-              <td><a href="{{url('/detail/1')}}" class="btn-small-table btn-primary ">Details</a></td>
+              <td><a href="{{url('')}}" class="btn-small-table btn-primary ">Details</a></td>
             </tr>
             @endforeach
 
@@ -78,4 +82,5 @@
   </div>
 </section>
 <!-- main content end -->
+@include('sweetalert::alert')
 @endsection

@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Student;
 
 class MahasiswaController extends Controller
 {
@@ -13,10 +15,10 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        //mengambil data dari tabel mahasantri       
-       $mahasiswa=\App\mahasantri::all();
-       //mengirim data mahasiswa ke view index
-        return view('admin',['mahasiswa'=>$mahasiswa]);
+        //mengambil data dari tabel Students     
+        $mahasiswa = Student::all();
+        //mengirim data mahasiswa ke view index
+        return view('index', ['mahasiswa' => $mahasiswa]);
     }
 
     /**
@@ -26,7 +28,8 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        //
+        $mahasiswa = Student::all();
+        return view('index', ['mahasiswa' => $mahasiswa]);
     }
 
     /**
@@ -36,7 +39,7 @@ class MahasiswaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    
+
     {
         //validasi
         $request->validate([
@@ -50,26 +53,12 @@ class MahasiswaController extends Controller
             'no_hp_org_tua' => 'required ',
             'alamat_lengkap' => 'required ',
             'nama_mabna' => 'required '
-        ]);        
-       // 
-       //insert ke table mahasantri
-       DB::table('mahasantri')->insert([
-        'nama_mahasiswa'=>$request-> nama_mahasiswa,
-        'nim'=>$request-> nim,
-        'fakultas_jurusan_semester'=>$request-> fakultas_jurusan_semester,
-       'tempat_tanggal_lahir'=>$request-> tempat_tanggal_lahir,
-       'no_hp_mahasantri'=>$request-> no_hp_mahasantri,
-        'jalur_masuk'=>$request-> jalur_masuk,
-        'nama_org_tua'=>$request-> nama_org_tua,
-        'no_hp_org_tua'=>$request-> no_hp_org_tua,
-        'alamat_lengkap'=>$request-> alamat_lengkap,
-        'nama_mabna'=>$request-> nama_mabna
-       ]);
+        ]);
 
-      //\App\mahasantri::create ($request->all());
+        Student::create($request->all());
 
-       //alihkan halaman ke halaman admin
-        return redirect('/admin')->with('status', ' Data Berhasil Ditambahkan!');
+        //alihkan halaman ke halaman admin
+        return redirect('/index')->with('status', ' Data Berhasil Ditambahkan!');
     }
 
     /**
@@ -78,10 +67,12 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show( )
+    public function show(Student $student)
     {
-        //
-        
+        if (!$student) {
+            dd('Student not found');
+        }
+        return view('detail', compact('student'));
     }
 
     /**
@@ -90,9 +81,10 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    // public function edit($id)
+    public function edit(Student $student)
     {
-        //
+        return view('pendaftaran', compact('student'));
     }
 
     /**
@@ -102,9 +94,10 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,  Student $student)
     {
-        //
+        $student->update($request->all());
+        return redirect('/index')->with('toast_success', 'Data Berhasil Diupdate!');;
     }
 
     /**

@@ -9,7 +9,11 @@
   <div class="row header text-center">
     <div class="col-md-12">
       <p class="header-title"> Pendaftran Ma'had Al-jamiah</p>
+      @if(isset($student))
+      <p>Form Edit</p>
+      @else
       <p>Form Pendaftaran</p>
+      @endif
     </div>
   </div>
   <!-- header end -->
@@ -18,7 +22,12 @@
     <!-- thumbnail -->
     <div class="  col-md-12">
       <div class="item-big-report col-md-12">
-        <form action="/admin" method="post">
+        <form @if (isset($student))
+        action="{{ url('update', $student->id) }}" method="post"
+        @else
+        action="{{ url('store') }}" method="post"
+        @endif>
+          @method('put')
           @csrf
           <div class="row">
             <!--form kiri-->
@@ -27,7 +36,7 @@
 
               <div class="mb-3">
                 <label for="nama_mahasiswa" class="title-input-primary-username">Nama Lengkap</label>
-                <input type="text" class="form-control input-type-primary-tiketsaya @error('nama_mahasiswa') is-invalid @enderror " id="nama_mahasiswa" aria-describedby="emailHelp" placeholder="Nama Lengkap" name="nama_mahasiswa">
+                <input type="text" @if (isset($student)) value="{{ $student->nama_mahasiswa}}" @endif class="form-control input-type-primary-tiketsaya @error('nama_mahasiswa') is-invalid @enderror " id="nama_mahasiswa" aria-describedby="emailHelp" placeholder="Nama Lengkap" name="nama_mahasiswa">
                 @error('nama_mahasiswa')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

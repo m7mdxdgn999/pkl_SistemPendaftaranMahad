@@ -25,7 +25,21 @@ Route::get('/pendaftaran', function () {
     return view('pendaftaran');
 });
 
-Route::get('/admin', 'MahasiswaController@index' );
-Route::get('/detail', 'MahasiswaController@show' );
-Route::post('/admin', 'MahasiswaController@store' );
 
+// Route::group(['prefix' => 'admin'], function(){
+    // Route::resource('student', 'MahasiswaController');
+// });
+
+
+
+
+
+
+Route::get('/index', 'MahasiswaController@index')->name('student.index');
+Route::get('/detail/{student}', 'MahasiswaController@show');
+Route::get('/edit/{student}', 'MahasiswaController@edit');
+Route::post('store', 'MahasiswaController@store' );
+Route::put('update/{student}', 'MahasiswaController@update');
+Route::delete('delete/{student}', 'MahasiswaController@destroy');
+// route::get('student/{student}'. 'MahasiswaController@edit')->name('student.edit');
+// route::put('student/{student}'. 'MahasiswaController@edit')->name('student.update');
