@@ -33,15 +33,6 @@
           </div>
         </form>
 
-        {{-- <div class="row">
-          @if (session('status'))
-          <div class=" alert alert-success " >
-            {{ session('status') }}
-          </div>
-          @endif
-        </div> --}}
-       
-
 
         <table class="table table-borderless table-tiketsaya">
           <thead>

@@ -58,7 +58,7 @@ class MahasiswaController extends Controller
         Student::create($request->all());
 
         //alihkan halaman ke halaman admin
-        return redirect('/index')->with('status', ' Data Berhasil Ditambahkan!');
+        return redirect('index')->with('status', ' Data Berhasil Ditambahkan!');
     }
 
     /**
@@ -97,7 +97,7 @@ class MahasiswaController extends Controller
     public function update(Request $request,  Student $student)
     {
         $student->update($request->all());
-        return redirect('/index')->with('toast_success', 'Data Berhasil Diupdate!');;
+        return redirect('index')->with('toast_success', 'Data Berhasil Diupdate!');;
     }
 
     /**
