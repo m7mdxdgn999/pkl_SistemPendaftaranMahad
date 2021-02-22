@@ -44,17 +44,17 @@
 
     <div class="menu">
       <div class="item">
-        <a class="sub-btn" href="#"><i class="fas fa-desktop"></i>Pendaftaran<i class="fas fa-angle-right dropdown"></i></a>
-        <div class="sub-menu">
+        <a class="sub-btn" href="{{url('/pendaftaran')}}"><i class="fas fa-desktop"></i>Pendaftaran<i class="fas fa-angle-right dropdown"></i></a>
+        {{-- <div class="sub-menu">
           <a href="{{url('/pendaftaran')}}" class="sub-item">Daftar mahasiswa</a>
           <a href="#" class="sub-item">List of mahasiswa</a>
           <a href="#" class="sub-item">Mabna Syekh Hasanuddin</a>
           <a href="#" class="sub-item">Mabna Syarifah Mudaim</a>
           <a href="#" class="sub-item">Mabna Syarifah Khodijah</a>
           <a href="#" class="sub-item">Mabna Rusunawa</a>
-        </div>
+        </div> --}}
       </div>
-      <div class="item"><a href="{{url('/admin')}}"><i class="fas fa-user-cog"></i>Admin Panel </a></div>
+      <div class="item"><a href="{{url('/index')}}"><i class="fas fa-user-cog"></i>Admin Panel </a></div>
       <div class="item"><a href="{{url('/logout')}}"><i class="fas fa-power-off"></i>Log Out</a></div>
 
     </div>

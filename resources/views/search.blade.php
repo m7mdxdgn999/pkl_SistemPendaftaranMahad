@@ -19,32 +19,19 @@
     <div class="  col-md-12">
       <div class="item-big-report col-md-12">
         <!-- head -->
-        <form action="{{ url('index') }}" method="get">
-          <div class="row">
-            <div class="col-md-6">
+        <form action="/index/search" method="GET">
+          <div class="row" style="margin-bottom: 20px;">
+            <div class="col-md-6 ">
               <div class="form-group">
-                <input type="text" name="cari" id="" class="form-control" value="{{ request('cari') }}" >
+                <input type="text" class="form-control input-type-primary-tiketsaya" id="cari" placeholder="masukan Keyword Pencarian" name="cari" autofocus autocomplete="off">
               </div>
             </div>
-            <div class="col-md-3">
-              <button type="submit" class="btn btn-info">search</button>
+            <div class="col-md-6 ">
+              <button type="submit" class="btn btn-primary " id="cari" name="cari" value="cari">Cari</button>
             </div>
-          </div>
-         
-        </form>    
 
-       
-       
-        {{-- <div class="row" style="margin-bottom: 20px;">
-          <div class="col-md-6 ">
-            <div class="form-group">
-            <input type="text" name="cari" class="form-control " id="" autocomplete="off">
-            </div>
-          </div>
-          <div class="col-md-6 ">
-            <button type="submit" class="btn btn-primary " id="cari" name="cari" >Cari</button>
-          </div>
-        </div>   --}}
+          </div>  
+        </form>    
 
 
           <table class="table table-borderless table-tiketsaya">
@@ -61,7 +48,7 @@
             <!-- akhir head -->
             <!-- body -->
             <tbody>
-              @forelse ($mahasiswa as $mhs)
+              @foreach ($mahasiswa as $mhs)
               <tr>
                 <td scope="row user-table-item"> {{$loop->iteration}} </td>
                 <td>
@@ -78,17 +65,10 @@
                 <td>{{$mhs->nama_mabna}}</td>
                 <td><a href="{{url('')}}" class="btn-small-table btn-primary ">Details</a></td>
               </tr>
-              @empty
-              <tr>
-                <td colspan="12">
-                  <h2 align="center"> no data found</h2>
-                </td>
-              </tr>
-              @endforelse
-              {{ $mahasiswa->links() }}
+              @endforeach
+
             </tbody>
             <!-- akhir body -->
-           
           </table>
         </form>
 

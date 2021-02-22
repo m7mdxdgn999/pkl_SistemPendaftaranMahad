@@ -13,13 +13,45 @@ class MahasiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        $cari= $request->cari;
+
+        if ($cari != '') {
+        // //mengambil data dari table students sesuai pencarian data 
+         $mahasiswa = Student::where('nama_mahasiswa','LIKE','%'.$cari.'%')
+                                ->orWhere('nim','LIKE','%'.$cari.'%')->paginate(3);
         //mengambil data dari tabel Students     
-        $mahasiswa = Student::all();
+        }else{
+            $mahasiswa = Student::paginate(2);
+        }
+        
         //mengirim data mahasiswa ke view index
         return view('index', ['mahasiswa' => $mahasiswa]);
     }
+
+    public function home()
+    {
+
+        return view('pendaftaran');
+    }
+    
+    // public function search()
+    // {
+       
+    //     // return $request->all();
+
+    //     // $search_text=$_GET['cari'];
+    //     // $mahasiswa = Student::where('nama_mahasiswa','LIKE','%'.$search_text.'%')->with('nim')->get();
+       
+    //     //menangkap data pencarian   
+          
+    //     //mengirim data mahasiswa ke view index
+   
+    //     return view('index', ['mahasiswa' => $mahasiswa]);
+    // }
+
 
     /**
      * Show the form for creating a new resource.
@@ -28,8 +60,8 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        $mahasiswa = Student::all();
-        return view('index', ['mahasiswa' => $mahasiswa]);
+        // $mahasiswa = Student::all();
+        // return view('index', ['mahasiswa' => $mahasiswa]);
     }
 
     /**
@@ -97,7 +129,7 @@ class MahasiswaController extends Controller
     public function update(Request $request,  Student $student)
     {
         $student->update($request->all());
-        return redirect('index')->with('toast_success', 'Data Berhasil Diupdate!');;
+        return redirect('index')->with('toast_success', 'Data Berhasil Diupdate!');
     }
 
     /**
@@ -106,8 +138,11 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,  Student $student)
     {
         //
+        $student->delete();
+        return redirect('index')->with('toast_success', 'Data Berhasil Dhapus!');
+
     }
 }
